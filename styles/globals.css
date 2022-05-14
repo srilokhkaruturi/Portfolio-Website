@@ -22,3 +22,7 @@ a {
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
+
+.skeleton{
+  animation: skele
+}

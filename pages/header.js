@@ -13,13 +13,15 @@ import MenuItem from '@mui/material/MenuItem';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ArticleIcon from '@mui/icons-material/Article';
 import {useRouter} from 'next/router';
+import Skeleton from '@mui/material/Skeleton';
 import {useSession, signIn, signOut } from "next-auth/react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const pages = [];
 const settings = ['Logout'];
 
-function Header(){
+function Header(props){
+    const { loading = false } = props;
     // set up theme
     const darkTheme = createTheme({
         palette: {
@@ -70,9 +72,10 @@ function Header(){
                     color: 'inherit',
                     textDecoration: 'none',
                     }}
-                >
+                >   
+                    <></>
                     <ArticleIcon sx={{fontSize: 30, color:"#3c5c93"}}/>
-                    Portfolio    
+                    {loading ? <Skeleton width={100}/> : 'Portfolio'}
                 </Typography>
     
         
@@ -144,7 +147,8 @@ function Header(){
                     }}
                 >
                     <ArticleIcon sx={{fontSize: 30, color:"#3c5c93"}}/>
-                    Portfolio    
+                    {loading ? <Skeleton width={100}/> : 'Portfolio'}
+                    
                     
                     
                 </Typography>
