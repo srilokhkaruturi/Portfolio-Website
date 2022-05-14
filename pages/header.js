@@ -1,6 +1,6 @@
 function Header(){
     return (
-        <p> test </p>
+        <h1> Portfolio </h1>
     )
 }
 
