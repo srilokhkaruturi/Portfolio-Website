@@ -1,7 +1,7 @@
 import Header from './header'
 import {useSession, signIn, signOut } from "next-auth/react"
 import GitHub from 'next-auth/providers/github';
-import {userRouter} from 'next/router'
+import {useRouter} from 'next/router'
 
 export default function Home() {
   const { data: session } = useSession();
