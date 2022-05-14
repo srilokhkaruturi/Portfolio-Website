@@ -1,6 +1,6 @@
 function Header(){
     return (
-        <h1> {process.env.NEXTAUTH_SECRET} </h1>
+        <h1> 10:37 </h1>
     )
 }
 
