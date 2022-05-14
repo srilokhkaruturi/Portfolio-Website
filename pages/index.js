@@ -1,5 +1,4 @@
 import Header from './header'
-
 import {useSession, signIn, signOut } from "next-auth/react"
 import GitHub from 'next-auth/providers/github';
 
@@ -7,6 +6,7 @@ export default function Home() {
   const { data: session } = useSession();
 
   if(session){
+   
     return (
       
         <>
@@ -17,7 +17,8 @@ export default function Home() {
   }
   return(
     <>
-        <button onClick={() => signIn("github")}>Sign in with Github</button>
+        const router = useRouter()
+        <button onClick={() => signIn("github", {callbackUrl: router.query.callbackUrl})}>Sign in with Github</button>
         <Header />
         </>
   )
