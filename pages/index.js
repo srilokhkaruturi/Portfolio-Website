@@ -4,7 +4,7 @@ import GitHub from 'next-auth/providers/github';
 
 export default function Home() {
   const { data: session } = useSession();
-
+  const router = useRouter()
   if(session){
    
     return (
@@ -17,7 +17,7 @@ export default function Home() {
   }
   return(
     <>
-        const router = useRouter()
+        
         <button onClick={() => signIn("github", {callbackUrl: router.query.callbackUrl})}>Sign in with Github</button>
         <Header />
         </>
