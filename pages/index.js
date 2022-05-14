@@ -17,7 +17,7 @@ export default function Home() {
   }
   return(
     <>
-        <button onClick={() => signIn("github", {callbackUrl: 'https://portfolio-website-sai-k02.vercel.app/'})}>Sign in with Github</button>
+        <button onClick={() => signIn("github", {callbackUrl: 'https://portfolio-website-indol.vercel.app/'})}>Sign in with Github</button>
         <Header />
         </>
   )
