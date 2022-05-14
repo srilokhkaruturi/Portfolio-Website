@@ -10,14 +10,14 @@ export default function Home() {
     return (
       
         <>
-        <button onClick={() => signOut()}>Sign Out</button>
+        <button onClick={() => signOut("github")}>Sign Out</button>
         <Header />
         </>
     )
   }
   return(
     <>
-        <button onClick={() => signIn()}>Sign in with Github</button>
+        <button onClick={() => signIn("github")}>Sign in with Github</button>
         <Header />
         </>
   )
