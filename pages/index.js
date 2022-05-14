@@ -11,16 +11,13 @@ export default function Home() {
     return (
       
         <>
-        <button onClick={() => signOut()}>Sign Out {session.user.name} </button>
         <Header />
         </>
     )
   }
   return(
-    <>
-        
-        <button onClick={() => signIn("github", {callbackUrl: router.query.callbackUrl})}>Sign in with Github</button>
-        <Header />
+        <>
+        <Header/>
         </>
   )
 
