@@ -1,4 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// Hello.js
+// This is really just a template api structure
 
 import { getSession } from "next-auth/react";
 

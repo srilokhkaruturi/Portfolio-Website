@@ -1,3 +1,7 @@
+/*
+File: [..nextauth].js
+Description: This file will uses nextAuth to handle the requests, res of any OAuth...
+*/
 import NextAuth from "next-auth/next";
 import GitHubProvider from "next-auth/providers/github"
 

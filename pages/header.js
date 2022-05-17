@@ -17,6 +17,14 @@ import Skeleton from '@mui/material/Skeleton';
 import {useSession, signIn, signOut } from "next-auth/react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+/*
+File: header.js
+Description: 
+
+This file contains the header which contains a sign in button to github where we use nextAuth to work with.
+
+*/
+
 const pages = [];
 const settings = ['Logout'];
 
