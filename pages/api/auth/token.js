@@ -1,10 +1,24 @@
-import { getToken } from "next-auth/jwt"
+/*
+File: crud/addTechnology.js
+*/
 
-const secret = process.env.NEXTAUTH_SECRET
+
+import { getToken } from "next-auth/jwt"
 
 export default async function handler(req, res) {
   // if using `NEXTAUTH_SECRET` env variable, we detect it, and you won't actually need to `secret`
   // const token = await getToken({ req })
-  const token = await getToken({ req, secret });
-  res.status(200).json({"JSON Web Token":token});
+
+
+
+  const token = await getToken({ req});
+
+
+  if(!token){
+    res.status(400).json({"JSON Web Token": "null"})
+    return;
+  }
+  res.status(200).json({"JSON Web Token":token});      
+  return;
+
 }

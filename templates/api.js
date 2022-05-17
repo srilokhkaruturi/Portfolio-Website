@@ -9,8 +9,10 @@ export default async function handler(req, res) {
   if(session){
     var name = session.user.name;
     res.status(200).json({ name: name })
+    return;
   }
   else{
     res.status(401).json({ message: 'Not verfied'})
+    return;
   }
 }
