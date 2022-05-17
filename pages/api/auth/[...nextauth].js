@@ -12,6 +12,7 @@ export default NextAuth({
             clientSecret : process.env.GITHUB_CLIENT_SECRET,
             
         }),
+    ],
     callbacks: {
         async jwt({ token, account }) {
         // Persist the OAuth access_token to the token right after signin
@@ -21,7 +22,6 @@ export default NextAuth({
         return token
         }
         
-    }
-    ],
+    },
     debug:true,
 });
