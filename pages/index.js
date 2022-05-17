@@ -24,7 +24,6 @@ export default function Home() {
       
         <>
         <Header />
-        
         <Skeleton variant="rectangular" animation="wave" height={1000}/>
 
         </>
