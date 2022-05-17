@@ -44,7 +44,7 @@ const addUserToDatabase = async () => {
   // try to add the user to the database
   try{
     // get user information from github
-    let githubInformation = await axios.get("http://localhost:3000/api/auth/getGithubInfo", {timeout: 10000}).catch(err => {throw new error(err.name)});
+    let githubInformation = await axios.get("/api/auth/getGithubInfo", {timeout: 10000}).catch(err => {throw new error(err.name)});
 
     if(!githubInformation){
       throw new error("Could not get github infromation [index.js][addUserToDatabase]")
@@ -63,7 +63,7 @@ const addUserToDatabase = async () => {
 
 
     // create user from using own api
-    const CREATE_USER_URL = "http://localhost:3000/api/c/createUser"
+    const CREATE_USER_URL = "/api/c/createUser"
 
     // define the body of the response
     var body = {name:userName, _id:userID}
