@@ -1,7 +1,11 @@
 import { getToken } from "next-auth/jwt"
 import axios from 'axios'
+import nc from "next-connect"
+import cors from "cors";
 
-export default async function handler(req, res) {
+const handler = nc().use(cors()).get(githubInformation())
+
+async function githubInformation(req, res) {
   // if using `NEXTAUTH_SECRET` env variable, we detect it, and you won't actually need to `secret`
   // const token = await getToken({ req })
   const token = await getToken({ req});
@@ -19,3 +23,7 @@ export default async function handler(req, res) {
   res.status(200).json(githubInformation);
   return;
 }
+
+
+
+export default handler;
