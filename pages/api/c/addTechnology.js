@@ -6,7 +6,7 @@ req = POST METHOD where we define a user or userid and a certain technology
 
 
 */
-import clientPromise from '../../../lib/mondodb'
+import clientPromise from '../../../lib/mongodb'
 
 
 export default async (req, res) => {

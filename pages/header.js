@@ -50,7 +50,7 @@ function Header(props){
     };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
-    };
+    }; 
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);

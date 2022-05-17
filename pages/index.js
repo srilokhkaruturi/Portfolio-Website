@@ -10,8 +10,8 @@ However, if this is not true than our user will only access to read only public 
 
 */
 
-import Header from './header'
-import {useSession, signIn, signOut } from "next-auth/react"
+import Header from './header';
+import {useSession, signIn, signOut } from "next-auth/react";
 import GitHub from 'next-auth/providers/github';
 import {useRouter} from 'next/router'
 import Skeleton from '@mui/material/Skeleton';

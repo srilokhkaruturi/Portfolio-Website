@@ -1,6 +1,6 @@
 // post method
 // user.js, will post a new user
-import clientPromise from '../../../lib/mondodb'
+import clientPromise from '../../../lib/mongodb'
 
 
 export default async (req, res) => {

@@ -1,5 +1,5 @@
 // user.js, will get all users
-import clientPromise from '../../../lib/mondodb'
+import clientPromise from '../../../lib/mongodb'
 
 
 export default async (req, res) => {
