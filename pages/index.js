@@ -69,7 +69,7 @@ const addUserToDatabase = async () => {
     var body = {name:userName, _id:userID}
     // add 
     response = await axios.post(CREATE_USER_URL, body, {timeout: 5000}).catch(err=>{throw new error(err)})
-    console.log(response.data)
+    console.log(response)
     if(response.status == "400"){
       return Promise.reject("ERROR: Could not add user. Likely user exists")
     }

@@ -17,30 +17,32 @@ const handler = nc()
     
         const users = db.collections("users");
     
-        // determine what to do 
-        const { method } = req;
     
-        if(method=="POST"){
-            try{
-                // get user data
-                const dataUsers = await db.collection("users").insertOne(req.body);
-                const users = JSON.parse(JSON.stringify(dataUsers));
-
-                if(!dataUsers){
-                    res.status(400).json({success: "false", message:"duplicate"})
-                }
-
-                res.status(200).json({success: "true", usersData:users,})
-                return;
-            } catch (error) {
-                res.status(400).json({success: "false", message: error.message})
-                return;
-    
+        try{
+            // get user data
+            const dataUsers = await db.collection("users").insertOne(req.body);
+            const users = JSON.parse(JSON.stringify(dataUsers));
+            if(dataUsers){
+                console.log("Added new user to database!")
             }
-            res.status(400).json({success: "failure"})
+
+            if(!dataUsers){
+                res.status(400).json({success: "false", message:"duplicate"})
+                console.log("Could not add user to database")
+                return;
+            }
+
+            res.status(200).json({success: "true", usersData:users,})
             return;
-    
+        } catch (error) {
+            res.status(400).json({success: "false", message: error.message})
+            return;
+
         }
+        res.status(400).json({success: "failure"})
+        return;
+    
+        
 
     });
 
