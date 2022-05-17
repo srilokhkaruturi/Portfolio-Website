@@ -1,14 +1,10 @@
 // post method
-// user.js, will post a new user
+// createUser.js, will post a new user
 import clientPromise from '../../../lib/mongodb'
-import axios from 'axios'
-import nc from "next-connect"
-import cors from "cors";
 
-const handler = nc()
-  .use(cors())
-  .post(async (req,res) => {
 
+export default async (req, res) => {
+  
         // define the client of mongodb
         const client = await clientPromise
 
@@ -16,7 +12,8 @@ const handler = nc()
         const db = client.db("userData");
     
         const users = db.collections("users");
-    
+
+
     
         try{
             // get user data
@@ -41,9 +38,4 @@ const handler = nc()
         }
         res.status(400).json({success: "failure"})
         return;
-    
-        
-
-    });
-
-export default handler;
+}
