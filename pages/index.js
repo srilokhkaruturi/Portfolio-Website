@@ -75,7 +75,7 @@ const addUserToDatabase = async () => {
     }
     return Promise.resolve("SUCCESS: Added new user")
   }catch(error){
-    return Promise.reject("ERROR:" + error.message)
+    return Promise.reject("ERROR: COULD NOT ADD USER")
   }
   return
 }
