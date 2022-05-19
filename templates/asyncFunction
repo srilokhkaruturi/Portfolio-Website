@@ -1,14 +1,1 @@
-import axios from "axios";
-
-const getTokenInformation = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/auth/token", {timeout: 3000});
-        token = response.data
-        return Promise.resolve("GOT TOKEN INFO");
-      } catch (errors) {
-        token = "null"
-        return Promise.reject("DID NOT GET TOKEN INFO")
-      }
-
-
-};
