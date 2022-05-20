@@ -20,7 +20,38 @@ export default NextAuth({
             token.accessToken = account.access_token
         }
         return token
+        },
+
+        async signIn({ user, account, profile, email, credentials }) {
+
+
+            //something wrong with following code gives error if uncommented
+            /* 
+            // get user information from github
+            let githubInformation = await axios.get("/api/auth/getGithubInfo", {timeout: 10000}).catch(err => {throw new error(err.name)});
+
+            if(!githubInformation){
+            throw new error("Could not get github infromation [index.js][addUserToDatabase]")
+            }
+
+            githubInformation = githubInformation.data
+            // define user name
+            const userName = githubInformation.login
+            */
+            
+            
+
+            const isAllowedToSignIn = true
+            if (isAllowedToSignIn) {
+              return "/authorized"
+            } else {
+              // Return false to display a default error message
+              return "/unauthorized"
+              // Or you can return a URL to redirect to:
+              // return '/unauthorized'
+            }
         }
+        
         
     },
     debug:true,
