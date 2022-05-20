@@ -4,6 +4,7 @@ Description: This file will uses nextAuth to handle the requests, res of any OAu
 */
 import NextAuth from "next-auth/next";
 import GitHubProvider from "next-auth/providers/github"
+import axios from "axios"
 
 export default NextAuth({
     providers: [
@@ -14,45 +15,40 @@ export default NextAuth({
         }),
     ],
     callbacks: {
-        async jwt({ token, account }) {
+        async jwt({ token, user, account, profile, isNewUser }) {
         // Persist the OAuth access_token to the token right after signin
+        if(user?.id){
+            token.id = user.id
+        }
+
+        if(user?.name){
+            token.name = user.name
+        }
+
         if (account) {
             token.accessToken = account.access_token
         }
+
         return token
         },
 
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user, account, profile}) {
 
-
-            //something wrong with following code gives error if uncommented
-            /* 
-            // get user information from github
-            let githubInformation = await axios.get("/api/auth/getGithubInfo", {timeout: 10000}).catch(err => {throw new error(err.name)});
-
-            if(!githubInformation){
-            throw new error("Could not get github infromation [index.js][addUserToDatabase]")
+            if(profile?.login){
+                return "/"+profile.login
+                return true
+            }else{
+                return "/"
             }
+        },
+        async session({ session, token, user }) {
+            // Send properties to the client, like an access_token from a provider.
+            session.accessToken = token.accessToken
+            session.id = token.id
+            session.name = token.name
 
-            githubInformation = githubInformation.data
-            // define user name
-            const userName = githubInformation.login
-            */
-            
-            
-
-            const isAllowedToSignIn = true
-            if (isAllowedToSignIn) {
-              return "/authorized"
-            } else {
-              // Return false to display a default error message
-              return "/unauthorized"
-              // Or you can return a URL to redirect to:
-              // return '/unauthorized'
-            }
-        }
-        
-        
+            return session
+        },
     },
     debug:true,
 });
