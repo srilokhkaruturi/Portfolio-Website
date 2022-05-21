@@ -192,7 +192,7 @@ function Header(props){
 
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Sign in with Github" enterDelay={300} leaveDelay={200}>
-                    <IconButton onClick={() => signIn("github", {callbackUrl: router.query.callbackUrl})}>
+                    <IconButton onClick={() => signIn("github", {callbackUrl: "/authenticate"})}>
                         <GitHubIcon  fontSize='large'/>
                     </IconButton>
                     
