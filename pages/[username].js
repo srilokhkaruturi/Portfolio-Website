@@ -24,8 +24,18 @@ function dynamicUserHome({SITE_USER_DATA, SITE_USERNAME}){
         // define user data
         SITE_USER_DATA = SITE_USER_DATA.usersData
 
+        // define technologies
+        let SITE_USER_TECHNOLOGIES
+
+        try{
+            SITE_USER_TECHNOLOGIES = SITE_USER_DATA[0].technologies
+        }
+        catch{
+            SITE_USER_TECHNOLOGIES = ["No technologies. Try adding one."]
+        }
+
         // define technologies object
-        let SITE_USER_TECHNOLOGIES = SITE_USER_DATA[0].technologies
+
 
         return (
             <>
@@ -37,7 +47,7 @@ function dynamicUserHome({SITE_USER_DATA, SITE_USERNAME}){
               })}
             </div>
               <TextField id="techInput"></TextField>
-              <button id="addTechnologyButton" onClick={() => console.log(document.getElementById("techInput").value)}> Add Technology</button>
+              <button id="addTechnologyButton" onClick={() => addTechnology(document.getElementById("techInput").value, session_username)}> Add Technology</button>
 
 
             </>
@@ -49,6 +59,30 @@ function dynamicUserHome({SITE_USER_DATA, SITE_USERNAME}){
     )
 
 
+
+}
+
+async function addTechnology(technology, session_username){
+  console.log("Adding " + technology + " to "  + session_username)
+  var axios = require('axios');
+  var data = JSON.stringify({
+    "name": session_username,
+    "technology": technology
+  });
+
+  var config = {
+    method: 'put',
+    url: '/api/c/addTechnology',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  let res = await axios(config)
+  .catch(function (error) {
+    console.log(error);
+  });
 
 }
 
@@ -71,8 +105,13 @@ export async function getServerSideProps(context) {
                       .catch(function (error) {
                         console.log(error);
                       });
-
-      let SITE_USER_DATA = JSON.stringify(raw_response.data)
+      let SITE_USER_DATA
+      if(raw_response){
+         SITE_USER_DATA = JSON.stringify(raw_response.data)
+      }
+      else{
+        SITE_USER_DATA = ""
+      }
 
 
     return {
