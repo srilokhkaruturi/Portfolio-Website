@@ -37,7 +37,7 @@ const addUserToDatabase = async () => {
     // defining id
     const userID = githubInformation.id
 
-    console.log("userName: " + JSON.stringify(userName));
+    console.log("userName: " + JSON.stringify(userName.toLowerCase()));
 
     console.log("userID: " + JSON.stringify(userID));
 
@@ -46,7 +46,7 @@ const addUserToDatabase = async () => {
     const CREATE_USER_URL = "/api/c/createUser"
 
     // define the body of the response
-    var body = {name:userName, _id:userID}
+    var body = {name:userName.toLowerCase(), _id:userID}
     // add 
     response = await axios.post(CREATE_USER_URL, body, {timeout: 5000}).catch(err=>{throw new error(err)})
     console.log(response)
