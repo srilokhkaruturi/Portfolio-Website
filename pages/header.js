@@ -83,7 +83,7 @@ function Header(props){
                 >   
                     <></>
                     <ArticleIcon sx={{fontSize: 30, color:"#3c5c93"}}/>
-                    {loading ? <Skeleton width={100}/> : 'Portfolio'}
+                    {loading ? <Skeleton width={100}/> : 'PRO-FOLIO'}
                 </Typography>
     
         
@@ -155,7 +155,7 @@ function Header(props){
                     }}
                 >
                     <ArticleIcon sx={{fontSize: 30, color:"#3c5c93"}}/>
-                    {loading ? <Skeleton width={100}/> : 'Portfolio'}
+                    {loading ? <Skeleton width={100}/> : 'PRO-FOLIO'}
                     
                     
                     
@@ -176,7 +176,7 @@ function Header(props){
                 textDecoration: 'none',
                 }}
             >
-                PORTFOLIO
+                PRO-FOLIO
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {pages.map((page) => (

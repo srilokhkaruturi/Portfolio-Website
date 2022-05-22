@@ -32,7 +32,7 @@ const addUserToDatabase = async () => {
 
     githubInformation = githubInformation.data
     // define user name
-    const userName = githubInformation.login
+    const userName = String(githubInformation.login).toLowerCase()
 
     // defining id
     const userID = githubInformation.id

@@ -25,7 +25,7 @@ export default function Home() {
       
         <>
         <Header />
-        <h1>Welcome {session.login} to fol.io landing page!</h1>
+        <h1>Welcome {session.login} to pro-fol.io landing page!</h1>
         <Skeleton variant="rectangular" animation="wave" height={1000}/>
 
         </>
