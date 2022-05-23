@@ -13,29 +13,35 @@ import { useFormControl } from '@mui/material/FormControl';
 
 // define user data of the page 
 function dynamicUserHome({SITE_USER_DATA, SITE_USERNAME}){
+    // DEFINE SESSION 
     const { data: session } = useSession();
     if(session){
-        // get user name
+        // DEFINE USERNAME
         const session_username = session.login
+
+        // DEFINE SESSION ID
         const session_id = session.id
+
+        // DEFINE SESSION ACCESSTOKEN
         const session_accessToken = session.accessToken
 
-        SITE_USER_DATA = JSON.parse(SITE_USER_DATA)
-        // define user data
-        SITE_USER_DATA = SITE_USER_DATA.usersData
-
-        // define technologies
+        // DEFINE SITE_USER_TECHNOLOGIES
         let SITE_USER_TECHNOLOGIES
 
-        try{
+        try{        
+            // PARSE JSON
+            SITE_USER_DATA = JSON.parse(SITE_USER_DATA)
+
+            // DEFINE USER DATA
+            SITE_USER_DATA = SITE_USER_DATA.usersData
+
+            // DEFINE TECHNOLOGIES
             SITE_USER_TECHNOLOGIES = SITE_USER_DATA[0].technologies
         }
         catch{
-            SITE_USER_TECHNOLOGIES = ["No technologies. Try adding one."]
+            // DEFINE USER TECHNOLOGIES
+            SITE_USER_TECHNOLOGIES = ["Could not load technologies."]
         }
-
-        // define technologies object
-
 
         return (
             <>
@@ -84,6 +90,7 @@ async function addTechnology(technology, session_username){
     console.log(error);
   });
 
+  window.location.reload();
 }
 
 export async function getServerSideProps(context) {
@@ -110,10 +117,10 @@ export async function getServerSideProps(context) {
          SITE_USER_DATA = JSON.stringify(raw_response.data)
       }
       else{
-        SITE_USER_DATA = ""
+        SITE_USER_DATA = "{}"
       }
 
-
+      // output to console the things that we have loaded
     return {
       props: {SITE_USERNAME, SITE_USER_DATA}, // will be passed to the page component as props
     }
