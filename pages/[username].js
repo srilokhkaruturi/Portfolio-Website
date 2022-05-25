@@ -120,7 +120,7 @@ export async function getServerSideProps(context) {
          SITE_USER_DATA = raw_response.data
       }
       else{
-        SITE_USER_DATA = "{}"
+        SITE_USER_DATA = ["Could not load technologies."]
       }
 
       // output to console the things that we have loaded
