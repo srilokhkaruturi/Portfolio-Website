@@ -42,7 +42,7 @@ function dynamicUserHome({SITE_USER_DATA, SITE_USERNAME}){
     catch(err) {
         // DEFINE USER TECHNOLOGIES
         console.log(err.message);
-        SITE_USER_TECHNOLOGIES = ["Could not load technologies."]
+        SITE_USER_TECHNOLOGIES = ["User does not exist!"]
     }
 
     return (
