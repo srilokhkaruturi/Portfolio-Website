@@ -16,56 +16,57 @@ function dynamicUserHome({SITE_USER_DATA, SITE_USERNAME}){
     // DEFINE SESSION 
     const { data: session } = useSession();
     console.log(SITE_USER_DATA)
-    if(session){
+    let SITE_USER_TECHNOLOGIES = []
+    let SESSION_USERNAME
+    let SESSION_ID
+    let SESSION_ACCESSTOKEN
+    if(session) {
         // DEFINE USERNAME
-        const session_username = session.login
+        SESSION_USERNAME = session.login
 
         // DEFINE SESSION ID
-        const session_id = session.id
+        SESSION_ID = session.id
 
         // DEFINE SESSION ACCESSTOKEN
-        const session_accessToken = session.accessToken
+        SESSION_ACCESSTOKEN = session.accessToken
+    }
 
-        // DEFINE SITE_USER_TECHNOLOGIES
-        let SITE_USER_TECHNOLOGIES
 
-        try{        
-            // PARSE JSON
-            SITE_USER_DATA = SITE_USER_DATA
+    try{
+        // DEFINE USER DATA
+        SITE_USER_DATA = SITE_USER_DATA.usersData
 
-            // DEFINE USER DATA
-            SITE_USER_DATA = SITE_USER_DATA.usersData
+        // DEFINE TECHNOLOGIES
+        SITE_USER_TECHNOLOGIES = SITE_USER_DATA[0].technologies
+    }
+    catch(err) {
+        // DEFINE USER TECHNOLOGIES
+        console.log(err.message);
+        SITE_USER_TECHNOLOGIES = ["Could not load technologies."]
+    }
 
-            // DEFINE TECHNOLOGIES
-            SITE_USER_TECHNOLOGIES = SITE_USER_DATA[0].technologies
-        }
-        catch(err) {
-            // DEFINE USER TECHNOLOGIES
-            console.log(err.message);
-            SITE_USER_TECHNOLOGIES = ["Could not load technologies."]
-        }
-
-        return (
-            <>
+    return (
+        <>
             <Header />
-            <Button>Hey {session_username}! You are viewing {SITE_USERNAME}'s page!</Button>
+            <Button>Hey {SESSION_USERNAME}! You are viewing {SITE_USERNAME}'s page!</Button>
+
+            {SITE_USER_TECHNOLOGIES &&
             <div>
               {SITE_USER_TECHNOLOGIES.map((technology, key) => {
                 return <p key={key}>{technology}</p>;
               })}
-            </div>
-              <TextField id="techInput"></TextField>
-              <button id="addTechnologyButton" onClick={() => addTechnology(document.getElementById("techInput").value, session_username)}> Add Technology</button>
-            </>
-        )
-    }
+            </div> }
 
-    return (
-        <Header />
+            {!SITE_USER_TECHNOLOGIES && <h1>User does not have any technologies added!</h1>}
+            {session && (SESSION_USERNAME == SITE_USERNAME) &&
+                <div>
+                    <h1>You have editing privilidges!</h1>
+                    <TextField id="techInput"></TextField>
+                    <button id="addTechnologyButton" onClick={() => addTechnology(document.getElementById("techInput").value, SESSION_USERNAME)}> Add Technology</button>
+                </div>}
+
+        </>
     )
-
-
-
 }
 
 async function addTechnology(technology, session_username){
@@ -128,7 +129,5 @@ export async function getServerSideProps(context) {
       props: {SITE_USERNAME, SITE_USER_DATA}, // will be passed to the page component as props
     }
   }
-
-
 
 export default dynamicUserHome;
