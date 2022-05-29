@@ -122,6 +122,7 @@ function Header(props){
                     onClose={handleCloseUserMenu}
                     >
                     <MenuItem onClick={() => {location.assign("/"+SESSION_USERNAME); return;}}> My Profile </MenuItem>
+                    <MenuItem onClick={() => {location.assign("/public/"+SESSION_USERNAME); return;}}> Preview Profile </MenuItem>
                     <MenuItem onClick={signOut}> Sign Out </MenuItem>
                     </Menu>
                 </Box>
@@ -205,6 +206,7 @@ function Header(props){
         </ThemeProvider>
     );
 };
+
 
 export default Header;
 
