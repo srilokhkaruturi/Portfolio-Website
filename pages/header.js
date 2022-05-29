@@ -26,7 +26,6 @@ This file contains the header which contains a sign in button to github where we
 */
 
 const pages = [];
-const settings = ['Logout'];
 
 function Header(props){
     const { loading = false } = props;
@@ -61,6 +60,7 @@ function Header(props){
     };
 
     if(session){
+        let SESSION_USERNAME = session.login
         return (
             <ThemeProvider theme={darkTheme}>
             <AppBar position="static"  elevation={0} style={{background: '#272727'}}>
@@ -121,6 +121,7 @@ function Header(props){
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                     >
+                    <MenuItem onClick={() => {location.assign("/"+SESSION_USERNAME); return;}}> My Profile </MenuItem>
                     <MenuItem onClick={signOut}> Sign Out </MenuItem>
                     </Menu>
                 </Box>
@@ -204,6 +205,7 @@ function Header(props){
         </ThemeProvider>
     );
 };
+
 export default Header;
 
 //<button >Sign in with Github</button>
